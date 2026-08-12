@@ -1,0 +1,17 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Iraq Tax",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "calculator",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "id": "tax",
+  "description": "IraqTaxCalculatorForGovernmentalEmployees",
+  "categories": [
+    "utilities"
+  ],
+  "lang": "ar"
+}
