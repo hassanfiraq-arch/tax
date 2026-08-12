@@ -1,0 +1,32 @@
+{
+  "name": "حاسبة ضريبة الدخل - العراق",
+  "short_name": "ضريبة الدخل",
+  "description": "حاسبة ضريبة دخل الموظفين في جمهورية العراق - برمجة: سهاد هادي",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f1f2f6",
+  "theme_color": "#6c5ce7",
+  "orientation": "portrait",
+  "lang": "ar",
+  "dir": "rtl",
+  "author": {
+    "name": "سهاد هادي",
+    "email": "suhad.albakri@gmail.com"
+  },
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "utilities"],
+  "prefer_related_applications": false
+}

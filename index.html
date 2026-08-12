@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>احتساب ضريبة الدخل للايفون</title>
+    
+    <!-- وسوم تعريفية خاصة بنظام iOS لجعل تطبيق الويب يعمل كتطبيق آيفون أصلي عند إضافته للشاشة الرئيسية -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ضريبة الدخل">
+    
+    <!-- استيراد خطوط Google Fonts الحديثة للاستخدام الرسومي الراقي -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- ربط ملف بيان PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6c5ce7">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>حاسبة ضريبة الدخل</h1>
+            <p>جمهورية العراق - ضريبة دخل الموظفين (نسخة iOS)</p>
+        </header>
+
+        <main class="app-content">
+            <!-- كرت إدخال البيانات الأساسية -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>البيانات الأساسية للموظف</h2>
+                </div>
+                
+                <div class="form-group">
+                    <label for="txtsal">الراتب الحقيقي (دينار عراقي)</label>
+                    <input type="number" id="txtsal" value="0" placeholder="أدخل الراتب الأساسي هنا...">
+                </div>
+
+                <div class="form-group">
+                    <label for="cmb_mstate">الحالة الزوجية</label>
+                    <select id="cmb_mstate">
+                        <option value="1">أعزب</option>
+                        <option value="2">متزوج</option>
+                        <option value="3">مطلق</option>
+                        <option value="4">أرمل</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtchild">عدد الأطفال</label>
+                    <input type="number" id="txtchild" value="0" min="0" max="9">
+                </div>
+
+                <div class="form-group">
+                    <label>الجنس</label>
+                    <div class="radio-group">
+                        <label class="radio-label male">
+                            <input type="radio" name="gender" id="rad_male" checked>
+                            <span>ذكر</span>
+                        </label>
+                        <label class="radio-label female">
+                            <input type="radio" name="gender" id="rad_female">
+                            <span>أنثى</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- كرت البيانات الزوجية وخيارات الشريك -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>حالة الشريك والأبناء</h2>
+                </div>
+
+                <div class="form-group">
+                    <label>طبيعة عمل الشريك</label>
+                    <div class="radio-group-vertical">
+                        <label class="radio-label">
+                            <input type="radio" name="spouse_job" id="rad_no_job" checked>
+                            <span>الشريك لا يعمل / قطاع خاص</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="spouse_job" id="rad_clerk">
+                            <span>الشريك موظف حكومي</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group merge-spouse-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="chk_merge_spouse">
+                        <span>دمج مدخلات ورواتب الزوجين</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="txt_spouse_sal">راتب الزوج أو الزوجة المدمج (دينار)</label>
+                    <input type="number" id="txt_spouse_sal" value="0" disabled>
+                </div>
+            </div>
+
+            <!-- كرت الخيارات الإضافية -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>خيارات وسماحات إضافية</h2>
+                </div>
+
+                <div class="checkbox-list">
+                    <label class="checkbox-label alert-color">
+                        <input type="checkbox" id="chk_leave">
+                        <span>إجازة 5 سنوات (التقاعد 25%)</span>
+                    </label>
+                    
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="chk_age">
+                        <span>يزيد العمر عن 63 سنة (+25 ألف)</span>
+                    </label>
+
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="chk_husband_disabled" disabled>
+                        <span>الزوج عاجز عن العمل (سماح إضافي)</span>
+                    </label>
+
+                    <label class="checkbox-label male-only">
+                        <input type="checkbox" id="chk_sep_child">
+                        <span>فصل سماحات الأبناء عن الأب</span>
+                    </label>
+
+                    <label class="checkbox-label female-only">
+                        <input type="checkbox" id="chk_merge_mother" disabled>
+                        <span>دمج سماحات الأبناء مع الأم</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- زر الاحتساب وعرض النتيجة الضريبية -->
+            <div class="calc-section">
+                <button id="btn_calc" class="btn-primary">احتســــاب الضريبة</button>
+            </div>
+
+            <div class="card results-card">
+                <div class="card-header">
+                    <h2>النتائج المالية</h2>
+                </div>
+                
+                <div class="form-group result-group">
+                    <label for="out_tax">الضريبة المستحقة</label>
+                    <input type="text" id="out_tax" readonly value="0 دينار" class="highlight-result">
+                </div>
+
+                <div class="result-details">
+                    <span id="out_retirement" class="badge pension-badge">التقاعد : 0 دينار</span>
+                    <span id="out_taxable" class="badge taxable-badge">راتب السماح الضريبي : 0 دينار</span>
+                </div>
+            </div>
+
+            <!-- صندوق تفاصيل الاحتساب التفصيلي -->
+            <div class="card explanation-card">
+                <div class="card-header">
+                    <h2>تفاصيل ومعادلة عملية الاحتساب (خطوة بخطوة)</h2>
+                </div>
+                <div class="form-group">
+                    <textarea id="txt_explain" readonly placeholder="اضغط على زر الاحتساب لعرض تفاصيل العملية الحسابية هنا بالتفصيل خطوة بخطوة..."></textarea>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="app-footer">
+            <p>نسخة الموبايل المطورة للايفون &copy; 2026</p>
+            <div class="footer-developer">
+                <span class="dev-label">&#128187; برمجة وتطوير</span>
+                <strong class="dev-name">سهاد هادي</strong>
+                <a href="mailto:suhad.albakri@gmail.com" class="dev-email">&#9993; suhad.albakri@gmail.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+    <!-- تسجيل Service Worker لدعم وضع عدم الاتصال -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('[PWA] Service Worker مسجّل بنجاح:', reg.scope))
+                    .catch(err => console.warn('[PWA] فشل تسجيل Service Worker:', err));
+            });
+        }
+    </script>
+</body>
+</html>

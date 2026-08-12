@@ -1,0 +1,381 @@
+/* style.css - تصميم واجهة مستخدم الموبايل الراقية */
+
+:root {
+    --primary-color: #6c5ce7;
+    --primary-hover: #5b4bc4;
+    --secondary-color: #10ac84;
+    --background-color: #f1f2f6;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-main: #2f3542;
+    --text-muted: #747d8c;
+    --border-color: #ced6e0;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    --border-radius-lg: 16px;
+    --border-radius-sm: 8px;
+    --font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent; /* إزالة وهج اللمس الافتراضي في أندرويد */
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: var(--font-family);
+    color: var(--text-main);
+    line-height: 1.6;
+    direction: rtl;
+    padding: 10px;
+}
+
+/* حاوية التطبيق وتحديد العرض الأقصى للجوال */
+.app-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ترويسة التطبيق */
+.app-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #4834d4 100%);
+    color: #ffffff;
+    padding: 25px 20px;
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(108, 92, 231, 0.2);
+    margin-bottom: 20px;
+}
+
+.app-header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.app-header p {
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+/* الكروت (البطاقات) بتأثير الزجاج وتظليل ناعم */
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: var(--border-radius-lg);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-light);
+    backdrop-filter: blur(10px);
+}
+
+.card-header {
+    border-bottom: 2px solid #f1f2f6;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.card-header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* حقول النموذج وتصميم المدخلات */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+
+input[type="number"],
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-inset);
+    text-align: center;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+    background-color: #f1f2f6;
+    color: var(--text-muted);
+    border-color: #e2e8f0;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* تصميم أزرار الخيار الدائرية (Radio Buttons) */
+.radio-group {
+    display: flex;
+    gap: 15px;
+}
+
+.radio-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+    font-weight: 600;
+    font-size: 0.95rem;
+    justify-content: center;
+}
+
+.radio-label input[type="radio"] {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color);
+}
+
+.radio-label.male {
+    border-color: rgba(0, 128, 0, 0.3);
+    color: #008000;
+}
+.radio-label.male input[type="radio"] {
+    accent-color: #008000;
+}
+
+.radio-label.female {
+    border-color: rgba(192, 0, 0, 0.3);
+    color: #c00000;
+}
+.radio-label.female input[type="radio"] {
+    accent-color: #c00000;
+}
+
+/* تصميم مربعات الاختيار (Checkboxes) المريحة للهاتف */
+.checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 5px 0;
+    color: var(--text-main);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--primary-color);
+    border-radius: 4px;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+}
+
+.checkbox-label.alert-color {
+    color: #d63031;
+}
+
+.checkbox-label.alert-color input[type="checkbox"] {
+    accent-color: #d63031;
+}
+
+/* زر الاحتساب البارز */
+.calc-section {
+    margin: 10px 0 20px 0;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #10ac84 0%, #019e73 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--border-radius-lg);
+    font-family: var(--font-family);
+    font-size: 1.15rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 8px 20px rgba(16, 172, 132, 0.3);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 10px rgba(16, 172, 132, 0.25);
+}
+
+/* كرت النتائج والمخرجات البارزة */
+.results-card {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 10px 25px rgba(44, 62, 80, 0.25);
+}
+
+.results-card h2 {
+    color: #ffffff;
+}
+
+.results-card label {
+    color: #ffffff;
+}
+
+.results-card .card-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.highlight-result {
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    color: #2ecc71 !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px dashed rgba(255, 255, 255, 0.2) !important;
+    border-radius: var(--border-radius-sm) !important;
+    padding: 15px !important;
+}
+
+.result-details {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.pension-badge {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #ff7675;
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.taxable-badge {
+    background-color: rgba(52, 152, 219, 0.2);
+    color: #74b9ff;
+    border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+/* كرت التفاصيل (صندوق الشرح) */
+.explanation-card {
+    background-color: #ffffff;
+}
+
+#txt_explain {
+    text-align: right;
+    font-size: 0.85rem;
+    font-family: monospace, var(--font-family);
+    color: #2f3542;
+    height: 250px;
+    resize: none;
+    background-color: #f8f9fa;
+    border: 1px solid #e2e8f0;
+    line-height: 1.8;
+}
+
+/* تذييل الصفحة */
+.app-footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-top: auto;
+}
+
+.footer-developer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 10px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(72, 52, 212, 0.08));
+    border: 1px solid rgba(108, 92, 231, 0.2);
+    border-radius: var(--border-radius-sm);
+}
+
+.dev-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.dev-name {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.dev-email {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.dev-email:hover {
+    opacity: 0.75;
+    text-decoration: underline;
+}
+
+/* تنسيق استجابة وحالات الإخفاء للأجهزة الذكية */
+@media (max-width: 400px) {
+    .radio-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
